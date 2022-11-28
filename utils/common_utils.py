@@ -205,6 +205,12 @@ def optimize(optimizer_type, parameters, closure, LR, num_iter):
         LR: learning rate
         num_iter: number of iterations 
     """
+    
+    total_loss = []
+    total_psnr_noisy = []
+    total_psnr_gt = []
+    total_psnr_gt_sm = []
+    
     if optimizer_type == 'LBFGS':
         # Do several steps with adam first
         optimizer = torch.optim.Adam(parameters, lr=0.001)
@@ -226,7 +232,14 @@ def optimize(optimizer_type, parameters, closure, LR, num_iter):
         
         for j in range(num_iter):
             optimizer.zero_grad()
-            closure()
+            loss, psnr_noisy, psnr_gt, psnr_gt_sm = closure()
             optimizer.step()
+            
+            total_loss.append(loss)
+            total_psnr_noisy.append(psnr_noisy)
+            total_psnr_gt.append(psnr_gt)
+            total_psnr_gt_sm.append(psnr_gt_sm)
+            
+        return total_loss, total_psnr_noisy, total_psnr_gt, total_psnr_gt_sm
     else:
         assert False
