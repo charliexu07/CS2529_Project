@@ -1,0 +1,4 @@
+image,optimal stopping point (deconv),maximum psnr (deconv),optimal stopping point (neural),maximum psnr (neural),optimal stopping point (deconv_neural),maximum psnr (deconv_neural)
+0,1743,27.293707579059063,1143,26.11435635878899,1587,27.036273460119876
+1,964,34.76015432572475,823,35.47265774278005,907,36.561713668082845
+2,1527,29.800609633096997,1132,28.932748445667823,1455,29.846474305773093
